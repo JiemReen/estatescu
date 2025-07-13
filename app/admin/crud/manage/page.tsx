@@ -26,7 +26,7 @@ export default function KelolaPropertiPage() {
     if (!loggedIn || role !== 'admin') {
       router.replace('/');
     } else {
-      fetch('https://687134f07ca4d06b34b9b681.mockapi.io/properties')
+      fetch('https://6873e6cac75558e2735597fd.mockapi.io/properties')
         .then((res) => res.json())
         .then((data) => {
           setAllProperties(data);
@@ -77,7 +77,7 @@ export default function KelolaPropertiPage() {
 
   const handleDelete = async (id: string) => {
     if (!confirm('Yakin ingin menghapus properti ini?')) return;
-    await fetch(`https://687134f07ca4d06b34b9b681.mockapi.io/properties/${id}`, {
+    await fetch(`https://6873e6cac75558e2735597fd.mockapi.io/properties/${id}`, {
       method: 'DELETE',
     });
     setFiltered((prev) => prev.filter((item) => item.id !== id));
