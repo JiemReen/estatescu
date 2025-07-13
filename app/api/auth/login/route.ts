@@ -1,7 +1,8 @@
+// app/api/auth/login/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import db from '@/lib/db';
-import { sessionOptions, UserSession } from '@/lib/session';
+import { sessionOptions } from '@/lib/session';
 import { getIronSession } from 'iron-session';
 
 export async function POST(req: NextRequest) {
@@ -23,7 +24,7 @@ export async function POST(req: NextRequest) {
 
   const res = NextResponse.json({ message: 'Login success', role: user.role });
 
-  const session = await getIronSession<UserSession>(req, res, sessionOptions);
+  const session = await getIronSession(req, res, sessionOptions);
   session.user = {
     email: user.email,
     role: user.role,
