@@ -11,7 +11,6 @@ import {
   CardContent,
   Typography,
   Box,
-  Grid,
   CardMedia,
 } from '@mui/material';
 
@@ -91,9 +90,20 @@ export default function KelolaPropertiPage() {
 
       <SearchFilterBar onSearch={handleSearch} />
 
-      <Grid container spacing={2} sx={{ mt: 2 }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mt: 2 }}>
         {filtered.map((item) => (
-          <Grid item xs={12} md={6} lg={4} key={item.id}>
+          <Box
+            key={item.id}
+            sx={{
+              flex: '1 1 calc(100% - 16px)', // Default: full width
+              '@media (min-width: 600px)': {
+                flex: '1 1 calc(50% - 16px)', // Tablet: 2 columns
+              },
+              '@media (min-width: 900px)': {
+                flex: '1 1 calc(33.333% - 16px)', // Desktop: 3 columns
+              },
+            }}
+          >
             <Card>
               <CardMedia
                 component="img"
@@ -124,9 +134,9 @@ export default function KelolaPropertiPage() {
                 </Box>
               </CardContent>
             </Card>
-          </Grid>
+          </Box>
         ))}
-      </Grid>
+      </Box>
     </Box>
   );
 }
